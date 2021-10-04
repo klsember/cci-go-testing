@@ -1,0 +1,28 @@
+version: "3"
+services:
+  db:
+    container_name: postgres_db
+    # platform: linux/amd64
+    image: klsember/snippetbox/db:latest
+    build:
+      context: ./db
+      dockerfile: ./Dockerfile
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_ROOT_PASSWORD: secret
+      POSTGRES_DB: snippetbox
+      POSTGRES_USER: web
+      POSTGRES_PASSWORD: password1
+    restart: on-failure
+  app:
+    container_name: snippetbox
+    image: klsember/snippetbox/app:latest
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports: 
+      - "4000:4000"
+    depends_on:
+      - db
+    restart: on-failure
