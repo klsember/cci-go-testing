@@ -15,7 +15,7 @@ executors:
       - image: circleci/postgres:13.4
         environment:
           POSTGRES_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
-          POSTGRES_DB: $PG_DB
+          POSTGRES_DB: test_snippetbox
           POSTGRES_USER: user
           POSTGRES_PASSWORD: $PG_PW
 
