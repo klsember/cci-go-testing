@@ -54,9 +54,9 @@ jobs:
       - image: circleci/postgres:13.4
         environment:
           POSTGRES_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
-          POSTGRES_DB: test_snippetbox
-          POSTGRES_USER: user
-          POSTGRES_PASSWORD: passw0rd
+          POSTGRES_DB: $PG_DB
+          POSTGRES_USER: $PG_USER
+          POSTGRES_PASSWORD: $PG_PW
     steps:
       - checkout
       - run: 
@@ -143,6 +143,8 @@ workflows:
       - go-lint
       - docker-lint
       - test:
+          context:
+            - snippetbox
           requires:
             - go-lint
             - docker-lint
