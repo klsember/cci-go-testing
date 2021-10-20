@@ -4,8 +4,20 @@ version: 2.1
 orbs:
   sonarcloud: sonarsource/sonarcloud@1.0.2
   heroku: circleci/heroku@1.2.6
-  aws-s3: circleci/aws-ecs@2.2.1
   cypress: cypress-io/cypress@1
+
+executor:
+  go_and_postgres:
+    docker:
+      - image: cimg/go:1.17.1
+        environment:
+          POSTGRES_DB: test_snippetbox
+      - image: circleci/postgres:13.4
+        environment:
+          POSTGRES_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+          POSTGRES_DB: $PG_DB
+          POSTGRES_USER: user
+          POSTGRES_PASSWORD: $PG_PW
 
 commands:
   compile_application:
@@ -43,20 +55,11 @@ jobs:
             hadolint ./Dockerfile
             hadolint ./db/Dockerfile
   test:
+    executor: go_and_postgres
     environment:
       TEST_RESULTS: /tmp/test-results
     working_directory: ~/project
     parallelism: 2
-    docker:
-      - image: cimg/go:1.17.1
-        environment:
-          POSTGRES_DB: test_snippetbox
-      - image: circleci/postgres:13.4
-        environment:
-          POSTGRES_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
-          POSTGRES_DB: $PG_DB
-          POSTGRES_USER: $PG_USER
-          POSTGRES_PASSWORD: $PG_PW
     steps:
       - checkout
       - run: 
