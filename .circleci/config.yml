@@ -6,7 +6,7 @@ orbs:
   heroku: circleci/heroku@1.2.6
   cypress: cypress-io/cypress@1
 
-executor:
+executors:
   go_and_postgres:
     docker:
       - image: cimg/go:1.17.1
