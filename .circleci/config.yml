@@ -144,18 +144,18 @@ workflows:
   build-workflow:
     jobs:
       - go-lint
-      - docker-lint
+      - docker-lint:
+          requires:
+            - go-lint
       - test:
           context:
             - snippetbox
           requires:
             - go-lint
-            - docker-lint
       - sca_testing: 
           context: sonarcloud
           requires:
             - go-lint
-            - docker-lint
           filters:
             branches:
               only: main
