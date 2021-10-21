@@ -162,7 +162,6 @@ workflows:
       - build_docker:
           requires:
             - test
-            - cypress_testing
             - sca_testing
       - heroku_deploy:
           requires:
