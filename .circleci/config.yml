@@ -170,6 +170,8 @@ workflows:
       - heroku_deploy:
           requires:
             - build_docker
+            - cypress_testing
+            - sca_testing
           filters:
             branches:
               only: main
