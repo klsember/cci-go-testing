@@ -163,15 +163,16 @@ workflows:
           requires:
             - test
             - cypress_testing
-      - cypress_testing:
-          requires:
-            - go-lint
-            - docker-lint
+            - sca_testing
       - heroku_deploy:
           requires:
             - build_docker
-            - cypress_testing
-            - sca_testing
+          filters:
+            branches:
+              only: main
+     - cypress_testing:
+          requires:
+            - heroku_deploy
           filters:
             branches:
               only: main
