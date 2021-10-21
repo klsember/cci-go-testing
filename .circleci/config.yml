@@ -169,7 +169,7 @@ workflows:
           filters:
             branches:
               only: main
-     - cypress_testing:
+      - cypress_testing:
           requires:
             - heroku_deploy
           filters:
