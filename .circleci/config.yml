@@ -24,7 +24,7 @@ jobs:
     docker:
       - image: aldanial/cloc:latest
     steps:
-      - run: ./usr/src/cloc . --josn
+      - run: /usr/src/cloc . --json
 
       
 workflows:
