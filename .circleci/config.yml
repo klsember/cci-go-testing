@@ -8,11 +8,18 @@ jobs:
     steps:
       - checkout
       - run: 
-          command: npm install -g cloc
+          command: sudo apk add cloc
       - run: cloc . --json
+  test-docker:
+    docker:
+      - image: aldanial/cloc:latest
+    steps:
+      - checkout
+      - run: cloc .
       
 workflows:
   test:
     jobs:
+      - test-docker
       - test-clock
       
