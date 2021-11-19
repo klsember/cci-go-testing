@@ -32,5 +32,6 @@ workflows:
     jobs:
       - test-npm
       - test-apt
+      - test-docker
       
       
