@@ -4,7 +4,7 @@ version: 2.1
 jobs:
   test-clock:
     docker:
-      - image: cimg/node
+      - image: cimg/node:17.1.0
     steps:
       - checkout
       - run: 
