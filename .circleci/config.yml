@@ -7,11 +7,12 @@ orbs:
 jobs:
   test-clock:
     docker:
-      - image: aldanial/cloc:1.90
+      - image: cimg/node
     steps:
       - checkout
       - run: 
-          command: cloc .
+          command: npm install -g cloc
+      - run: cloc . --json
       
 workflows:
   test:
