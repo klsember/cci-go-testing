@@ -2,7 +2,7 @@
 version: 2.1
 
 orbs:
-  test-orb: klsember/test-orb@dev:21c8886
+  test-orb: klsember/test-orb@dev:alpha
 
 jobs:
   test-clock:
