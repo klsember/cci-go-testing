@@ -5,7 +5,7 @@ orbs:
   ksember-orb: klsember/test-orb@dev:21c8886
 
 jobs:
-  test-clock:
+  test-apt:
     docker:
       - image: cimg/node:17.1.0
     steps:
@@ -13,7 +13,7 @@ jobs:
       - run: 
           command: sudo apt update && sudo apt install cloc
       - run: cloc . --json
-  test-docker:
+  test-npm:
     docker:
       - image: cimg/node:17.1.0
     steps:
