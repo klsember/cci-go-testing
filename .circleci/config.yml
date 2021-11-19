@@ -20,18 +20,12 @@ jobs:
       - checkout
       - run: sudo npm install -g cloc
       - run: cloc .
-  test-dev-orb:
-    docker:
-      - image: cimg/base:stable
-    steps:
-      - checkout
-      - ksember-orb/greet
+
       
 workflows:
   test:
     jobs:
-      - test-docker
-      - test-clock
-      - test-dev-orb
+      - test-npm
+      - test-apt
       
       
