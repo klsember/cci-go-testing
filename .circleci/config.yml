@@ -2,7 +2,7 @@
 version: 2.1
 
 orbs:
-  ksember-orb: klsember/test-orb@dev:alpha
+  ksember-orb: klsember/test-orb@dev:21c8886
 
 jobs:
   test-clock:
@@ -20,11 +20,18 @@ jobs:
       - checkout
       - run: sudo npm install -g cloc
       - run: cloc .
+  test-dev-orb:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - ksember-orb/greet
       
 workflows:
   test:
     jobs:
       - test-docker
       - test-clock
-      - ksember-orb/greet
+      - test-dev-orb
+      
       
