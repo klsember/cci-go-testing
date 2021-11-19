@@ -26,8 +26,9 @@ jobs:
     steps:
       - run: 
           command: |
-            /usr/src/cloc . --json | tee output.txt
-            cat output.txt 
+            /usr/src/cloc . --json
+            export PATH="/usr/src:$PATH"
+            cloc . --json
 
       
 workflows:
