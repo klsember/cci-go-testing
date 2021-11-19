@@ -12,9 +12,10 @@ jobs:
       - run: cloc . --json
   test-docker:
     docker:
-      - image: aldanial/cloc:latest
+      - image: cimg/node:17.1.0
     steps:
       - checkout
+      - run: sudo npm install -g cloc
       - run: cloc .
       
 workflows:
