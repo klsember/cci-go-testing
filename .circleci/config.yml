@@ -19,12 +19,12 @@ jobs:
     steps:
       - checkout
       - run: sudo npm install -g cloc
-      - run: cloc .
+      - run: cloc . --json
   test-docker:
     docker:
       - image: aldanial/cloc:latest
     steps:
-      - run: cloc .
+      - run: ./usr/src/cloc . --josn
 
       
 workflows:
