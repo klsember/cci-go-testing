@@ -22,7 +22,7 @@ jobs:
       - run: cloc . --json
       - run: cloc --diff /home/circleci/project /home/circleci/project/ui
       - run: |
-          export DIFF= /home/circleci/project /home/circleci/project/ui
+          export DIFF='/home/circleci/project /home/circleci/project/ui'
           echo "export DIFFERENCE=" >> $BASH_ENV
           if [ ! "$DIFF" = "" ]; then
             diff="'--diff ${DIFF}'"
