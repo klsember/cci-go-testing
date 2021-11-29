@@ -5,14 +5,14 @@ orbs:
   ksember-orb: klsember/test-orb@dev:21c8886
 
 jobs:
-  test-apt:
-    docker:
-      - image: cimg/node:17.1.0
-    steps:
-      - checkout
-      - run: 
-          command: sudo apt update && sudo apt install cloc
-      - run: cloc . --json
+  #test-apt:
+  #  docker:
+  #    - image: cimg/node:17.1.0
+  #  steps:
+  #    - checkout
+  #    - run: 
+  #        command: sudo apt update && sudo apt install cloc
+  #    - run: cloc . --json
   test-npm:
     docker:
       - image: cimg/node:17.1.0
@@ -20,22 +20,23 @@ jobs:
       - checkout
       - run: sudo npm install -g cloc
       - run: cloc . --json
-  test-docker:
-    docker:
-      - image: aldanial/cloc:latest
-    steps:
-      - run: 
-          command: |
-            /usr/src/cloc . --json
-            export PATH="/usr/src:$PATH"
-            cloc . --json
+      - run: cloc --diff . ~/src
+  #test-docker:
+  #  docker:
+  #    - image: aldanial/cloc:latest
+  #  steps:
+  #    - run: 
+  #        command: |
+  #          /usr/src/cloc . --json
+  #          export PATH="/usr/src:$PATH"
+  #          cloc . --json
 
       
 workflows:
   test:
     jobs:
       - test-npm
-      - test-apt
-      - test-docker
+      # - test-apt
+      # - test-docker
       
       
