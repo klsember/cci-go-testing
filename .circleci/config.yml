@@ -20,7 +20,7 @@ jobs:
       - checkout
       - run: sudo npm install -g cloc
       - run: cloc . --json
-      - run: cloc '--diff ~/project ~/project/ui'
+      - run: cloc --diff /home/circleci/project /home/circleci/project/ui
   #test-docker:
   #  docker:
   #    - image: aldanial/cloc:latest
