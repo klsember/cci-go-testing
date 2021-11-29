@@ -20,7 +20,17 @@ jobs:
       - checkout
       - run: sudo npm install -g cloc
       - run: cloc . --json
-      - run: cloc --diff /home/circleci/project/cci-go-testing /home/circleci/project/cci-go-testing/ui
+      - run: cloc --diff /home/circleci/project /home/circleci/project/ui
+      - run: |
+          export DIFF= /home/circleci/project /home/circleci/project/ui
+          echo "export DIFFERENCE=" >> $BASH_ENV
+          if [ ! "$DIFF" = "" ]; then
+            diff="'--diff ${DIFF}'"
+            echo "$diff"
+            echo "export DIFFERENCE=$diff" >> $BASH_ENV
+            source $BASH_ENV
+          fi
+          cloc ${DIFFERENCE}
   #test-docker:
   #  docker:
   #    - image: aldanial/cloc:latest
