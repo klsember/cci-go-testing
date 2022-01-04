@@ -12,7 +12,7 @@ executors:
       - image: cimg/go:1.17.1
         environment:
           POSTGRES_DB: test_snippetbox
-      - image: circleci/postgres:13.4
+      - image: cimg/postgres:13.4
         environment:
           POSTGRES_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
           POSTGRES_DB: test_snippetbox
